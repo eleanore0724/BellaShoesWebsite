@@ -1,0 +1,30 @@
+@charset "UTF-8";
+/* Black & White minimal theme */
+:root {
+    --bs-body-bg: #f8f9fa;
+    --bs-body-color: #111;
+}
+
+.navbar-brand {
+    letter-spacing: .5px;
+}
+
+.card .ratio {
+    background-image: linear-gradient(135deg, #f2f2f2 25%, #ffffff 25%, #ffffff 50%, #f2f2f2 50%, #f2f2f2 75%, #ffffff 75%, #ffffff 100%);
+    background-size: 20px 20px;
+}
+
+.btn-outline-dark:hover {
+    color: #fff;
+}
+
+.form-control:focus, .form-select:focus {
+    box-shadow: 0 0 0 .25rem rgba(0,0,0,.1);
+}
+
+/* 顏色色票（黑白簡約） */
+.swatch { width: 32px; height: 32px; border: 1px solid #000; border-radius: 50%; padding: 0; }
+.swatch-black { background: #000; }
+.swatch-white { background: #fff; }
+.swatch-grey  { background: #bbb; }
+.swatch-red { background: #f00; }
