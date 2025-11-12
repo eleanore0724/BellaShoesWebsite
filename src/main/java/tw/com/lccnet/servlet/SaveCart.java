@@ -22,6 +22,10 @@ public class SaveCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 
 		List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
@@ -62,11 +66,6 @@ public class SaveCart extends HttpServlet {
 			request.setAttribute("message", "結帳失敗，請稍後再試！");
 			request.getRequestDispatcher("cart.jsp").forward(request, response);
 		}
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

@@ -16,10 +16,8 @@ public class UserDaoImpl implements UserDao{
 	
 	public UserDaoImpl(Connection conn) {
 	}
-	
 	public UserDaoImpl() {
 	}
-
 
 	@Override
 	public User userLogin(String email, String password) {
@@ -44,5 +42,38 @@ public class UserDaoImpl implements UserDao{
 		}
 		return user;
 	}
-
+	
+	
+	@Override
+	public boolean isUserExist(String email) {
+		String sql = "SELECT * FROM users WHERE email = ?";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			System.out.println("email驗證已經存在");
+			return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println("email驗證不存在");
+		return true;
+	}
+	
+	
+	@Override
+	public boolean insertUser(User user) {
+		String sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
+		try {
+			PreparedStatement ps=conn.prepareStatement(sql);
+			ps.setString(1, user.getName());
+			ps.setString(2, user.getEmail());
+			ps.setString(3, user.getPassword());
+			ps.execute();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }
