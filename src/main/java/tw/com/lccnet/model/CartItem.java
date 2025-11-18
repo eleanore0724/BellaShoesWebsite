@@ -6,8 +6,7 @@ public class CartItem {
 	private int cart_item_id;
 	private int product_id;
 	private int quantity;
-	
-	// 額外商品資訊欄位（JOIN 產品表用）
+	private String size;
 	private String product_name;
 	private String image_url;
 	private int price;
@@ -15,11 +14,8 @@ public class CartItem {
 	private LocalDateTime created_at;
 	private int order_id;
 	
-	
 	public CartItem() {}
 	
-	
-
 	public CartItem(int cart_item_id, int product_id, int quantity, String product_name, String image_url, int price,
 			Integer user_id) {
 		super();
@@ -33,12 +29,13 @@ public class CartItem {
 		this.created_at = LocalDateTime.now();
 	}
 
-	public CartItem(int product_id, String product_name, int price, String image_url ,int quantity) {
+	public CartItem(int product_id, String product_name, int price, String image_url ,int quantity,String size) {
 		this.product_id = product_id;
 		this.product_name = product_name;
 		this.price = price;
 		this.image_url = image_url;
 		this.quantity = quantity;
+		this.size = size;
 		this.created_at = LocalDateTime.now();
 	}
 	
@@ -114,6 +111,14 @@ public class CartItem {
 
 	public void setOrder_id(int order_id) {
 		this.order_id = order_id;
+	}
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
 	}
 	
 }

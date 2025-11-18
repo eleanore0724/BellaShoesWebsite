@@ -1,10 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="tw.com.lccnet.model.Product" %>
+<%@ page import="java.util.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
     Product product = (Product) request.getAttribute("product");
 %>
- 
+<%
+    List<Product> variants = (List<Product>) request.getAttribute("variants");
+    Set<String> sizes = (Set<String>) request.getAttribute("sizes");
+    Set<String> colors = (Set<String>) request.getAttribute("colors");
+%>
  
 <!DOCTYPE html>
 <html>
@@ -25,8 +31,8 @@
                     <li class="breadcrumb-item"><a href="products.jsp" class="link-dark">商品</a></li>
                 </ol>
             </nav>
-
-            <div class="row g-4">
+			
+			<div class="row g-4">
                 <!-- 左側：商品圖片輪播 -->
                 <div class="col-lg-6">
                     <div id="carouselProduct" class="carousel slide bg-white border" data-bs-ride="carousel">
@@ -35,6 +41,7 @@
                                 <div class="ratio ratio-1x1 d-flex align-items-center justify-content-center">
                                     <span class="text-secondary">
                                      	<img src="<%= product.getImage_url() %>" alt="主圖" class="img-fluid">
+<%--                                      	<img src="<%= product.getImage_url() %>" alt="主圖" class="img-fluid"> --%>
                                     </span>
                                 </div>
                             </div>
@@ -42,6 +49,7 @@
                                 <div class="ratio ratio-1x1 d-flex align-items-center justify-content-center bg-light">
                                     <span class="text-secondary">
                                     	<img src="<%= product.getImage_url_2() %>" alt="圖二" class="img-fluid">
+<%--                                     	<img src="<%= product.getImage_url_2() %>" alt="圖二" class="img-fluid"> --%>
                                     </span>
                                 </div>
                             </div>
@@ -49,6 +57,7 @@
                                 <div class="ratio ratio-1x1 d-flex align-items-center justify-content-center bg-light">
                                     <span class="text-secondary">
                                     	<img src="<%= product.getImage_url_3() %>" alt="圖三" class="img-fluid">
+<%--                                     	<img src="<%= product.getImage_url_3() %>" alt="圖三" class="img-fluid"> --%>
                                     </span>
                                 </div>
                             </div>
@@ -73,42 +82,46 @@
                     <div class="mb-3">
                         <label class="form-label">顏色</label>
                         <div class="d-flex gap-2" id="p-colors">
-                            <!-- 以 radio 當作顏色選擇 -->
-                            <input type="radio" class="btn-check" name="color" id="c-black" value="black" autocomplete="off" checked>
-                            <label class="btn swatch swatch-black" for="c-black" title="黑色"></label>
-                            <input type="radio" class="btn-check" name="color" id="c-white" value="white" autocomplete="off">
-                            <label class="btn swatch swatch-white" for="c-white" title="白色"></label>
-                            <input type="radio" class="btn-check" name="color" id="c-grey" value="grey" autocomplete="off">
-                            <label class="btn swatch swatch-grey" for="c-grey" title="灰色"></label>
+
+							<select id="colorSelect" class="form-select w-auto">
+								<option value="">請選擇</option>
+								<% for (String c : colors) { %>
+								<option value="<%=c%>"><%=c%></option>
+								<% } %>
+							</select>
                         </div>
                     </div>
 
                     <!-- 尺寸選擇 -->
                     <div class="mb-3">
-                        <label class="form-label">尺寸</label>
-                        <select id="p-size" class="form-select w-auto">
-                            <option value="">選擇尺寸</option>
-                            <option>38</option>
-                            <option>39</option>
-                            <option>40</option>
-                            <option>41</option>
-                            <option>42</option>
-                        </select>
-                    </div>
+                        <label class="form-label">尺寸</label> 
+                        	<select id="sizeSelect" class="form-select w-auto">
+							<option value="">選擇尺寸</option>
+							<%for (String s : sizes) {%>
+							<option value="<%=s%>"><%=s%></option>
+							<%}%>
+							</select>
+					</div>
 
-                    <!-- 數量選擇 -->
-                    <div class="mb-3">
-                        <label class="form-label">數量</label>
-                        <input id="p-qty" type="number" class="form-control w-auto" min="1" value="1">
-                    </div>
-
-                    <!-- 操作按鈕 -->
+                    <!-- 數量選擇 -->                     
+					<div class="mb-3">
+						<label class="form-label">數量</label>
+						<div class="d-flex align-items-center gap-2 mt-1">
+							<button class="btn btn-outline-secondary btn-sm" name="action" value="decrease">-</button>
+							<input name="quantity" type="text" class="form-control w-auto text-center" min="1" value="1" style="width: 60px;">
+							<button class="btn btn-outline-secondary btn-sm" name="action" value="increase">+</button>
+						</div>
+					</div>
+					<!-- 操作按鈕 -->
                     <div class="d-flex gap-2">
                     <form action="addToCart" method="post">
                     	<input type="hidden" name="product_id" value="${product.product_id}">
                     	<input type="hidden" name="product_name" value="${product.product_name}">
 						<input type="hidden" name="price" value="${product.price}">
 						<input type="hidden" name="image_url" value="${product.image_url}">
+						<input type="hidden" name="image_url" value="${product.size}">
+						<input type="hidden" name="image_url" value="${product.color}">
+
                         <button id="btn-add" class="btn btn-dark btn-add-cart">加入購物車</button>
                     </form>
                         <a href="cartServlet" class="btn btn-outline-dark">前往購物車</a>
@@ -144,6 +157,7 @@
 			<%@include file="include/related-products.jsp"%>
         </div>
     </main>
+
 	<%@include file="include/footer.jsp"%>
 </body>
 </html>

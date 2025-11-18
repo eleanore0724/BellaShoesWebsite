@@ -30,15 +30,17 @@ if (cart == null) cart = new ArrayList<>();
 		<div class="collapse navbar-collapse position-absolute top-50 start-50 translate-middle" id="navbarNav">
 			<ul class="navbar-nav gap-3">
 				<li class="nav-item"><a class="nav-link" href="index.jsp">首頁</a></li>
-				<!--  <li class="nav-item"><a class="nav-link" href="latest-product.jsp">新品登場</a></li> -->
-				<li class="nav-item"><a class="nav-link" href="indexServlet">全部商品</a></li>
+				<!--  <li class="nav-item"><a class="nav-link" href="latest-product.jsp">新品登場</a></li> 
+				<li class="nav-item"><a class="nav-link" href="indexServlet">全部商品</a></li>-->
 				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle active" href="#" id="navProducts" role="button" data-bs-toggle="dropdown" aria-expanded="false">商品分類</a>
 					<ul class="dropdown-menu" aria-labelledby="navProducts">
+						<li><a class="dropdown-item" href="productServlet">全部</a></li>
 						<li><a class="dropdown-item" href="productServlet?category=loafers">樂福鞋</a></li>
 						<li><a class="dropdown-item" href="productServlet?category=casual">休閒鞋</a></li>
 						<li><a class="dropdown-item" href="productServlet?category=boots">靴子</a></li>
 						<li><a class="dropdown-item" href="productServlet?category=heels">跟鞋</a></li>
-					</ul></li>
+					</ul>
+				</li>
 				<li class="nav-item"><a class="nav-link" href="/products.html">門市查詢</a></li>
 			</ul>
 

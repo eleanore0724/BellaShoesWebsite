@@ -55,7 +55,7 @@
 									</div> <!-- 商品資訊 -->
 									<div class="flex-grow-1">
 										<div class="fw-semibold"><%= item.getProduct_name() %></div>
-										<div class="small text-secondary">尺寸：M | 單價：<%= item.getPrice() %></div>
+										<div class="small text-secondary">尺寸：<%= item.getSize()%> | 單價：<%= item.getPrice() %></div>
 									</div> <!-- 數量控制 -->
 									<div class="flex-shrink-0 d-flex align-items-center gap-2">
 										<div class="input-group" style="width: 100px;">

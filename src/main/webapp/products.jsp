@@ -47,12 +47,12 @@
 					<c:forEach items="${requestScope.lists}" var="list">
 						<div class="col col-md-3 my-2">
 							<div class="card h-100">
-								<a href="ProductDetailServlet?id=${list.product_id}">
+							<a href="ProductDetailServlet?id=${list.product_id}&groupBy_id=${list.groupBy_id}">
+<%-- 							<a href="ProductDetailServlet?id=${list.product_id}"}> --%>
 									<div class="bg-image hover-overlay" data-mdb-ripple-init
 										data-mdb-ripple-color="light">
 										<img src=${list.image_url } class="img-fluid"> <a href="#!">
-											<div class="mask"
-												style="background-color: rgba(251, 251, 251, 0.15);"></div>
+											<div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
 										</a>
 									</div>
 									<div class="card-body">
@@ -63,6 +63,7 @@
 								<form action="addToCart" method="post" class="position-absolute bottom-0 end-0 m-2">
 									<input type="hidden" name="product_id" value="${list.product_id}">
 									<input type="hidden" name="product_name" value="${list.product_name}">
+									<input type="hidden" name="size" value="${list.size}">
 									<input type="hidden" name="price" value="${list.price}">
 									<input type="hidden" name="image_url" value="${list.image_url}">
 									<button type="submit" class="btn btn-outline-dark btn-sm rounded-3 px-2 py-1" id="btn-add">

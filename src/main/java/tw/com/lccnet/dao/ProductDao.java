@@ -7,7 +7,12 @@ import tw.com.lccnet.model.Product;
 
 public interface ProductDao extends BaseUtils<Product>{
 	
+	//當Category沒有值
 	public List<Product> query();
+	
 	public List<Product> queryByCategory(String category);
 	public Product getProductById(int id);
+	
+	public List<Product> getProductsByGroup(int groupById);
+	Product getProductByGroupSizeColor(String groupById, String size, String color);
 }
