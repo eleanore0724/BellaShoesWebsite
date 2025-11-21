@@ -17,14 +17,19 @@ public class UpdateCart extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
-		String action = request.getParameter("action");  // "increase" or "decrease"
-		
+		String size = request.getParameter("size");
+        String color = request.getParameter("color");
+        String quantity = request.getParameter("quantity");
+		String action = request.getParameter("action");  
+		System.out.println("size: "+size+" /  color: "+color+" /  quantity: "+quantity+" /  action: "+action);
 		HttpSession session = request.getSession();
 		List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
 		
 		if (cart != null) {
             for (CartItem item : cart) {
-                if (item.getProduct_id() == product_id) {
+                if (item.getProduct_id() == product_id &&
+                    item.getSize() != null && item.getSize().equals(size) &&
+                    item.getColor() != null && item.getColor().equals(color)) {
                     if ("increase".equals(action)) item.setQuantity(item.getQuantity() + 1);
                     if ("decrease".equals(action) && item.getQuantity() > 1) item.setQuantity(item.getQuantity() - 1);
                     break;

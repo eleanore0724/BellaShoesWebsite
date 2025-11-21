@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,12 +56,17 @@
 									</div> <!-- 商品資訊 -->
 									<div class="flex-grow-1">
 										<div class="fw-semibold"><%= item.getProduct_name() %></div>
-										<div class="small text-secondary">尺寸：<%= item.getSize()%> | 單價：<%= item.getPrice() %></div>
+										<div class="small text-secondary">尺寸：<%= item.getSize()%> | 顏色：<%= item.getColor()%> | 單價：<%= item.getPrice() %></div>
 									</div> <!-- 數量控制 -->
 									<div class="flex-shrink-0 d-flex align-items-center gap-2">
 										<div class="input-group" style="width: 100px;">
 											<form action="updateCart" method="post" style="display:flex; align-items:center; gap:5px;">
 												<input type="hidden" name="product_id" value="<%= item.getProduct_id() %>">
+												<input type="hidden" name="color" value="<%= item.getColor()%>">
+												<input type="hidden" name="size" value="<%= item.getSize() %>">
+												
+												
+												
 												<button class="btn btn-outline-secondary btn-sm" name="action" value="decrease">-</button>
 												<input class="form-control form-control-sm text-center" value="<%= item.getQuantity()%>" min="1">
 												<button class="btn btn-outline-secondary btn-sm" name="action" value="increase">+</button>
@@ -71,6 +77,9 @@
 										</div>
 										<form action="deleteCart" method="post" style="display:flex;">
 											<input type="hidden" name="product_id" value="<%= item.getProduct_id() %>">
+
+											<input type="hidden" name="color" value="<%= item.getColor() %>">
+											<input type="hidden" name="size" value="<%= item.getSize() %>">
 											<button class="btn btn-outline-danger btn-sm" title="移除商品">
 												<span>×</span>
 											</button>

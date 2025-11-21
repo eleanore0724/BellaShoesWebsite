@@ -24,10 +24,10 @@ public class AddToCart extends HttpServlet {
 		String image_url = request.getParameter("image_url");
 		String size=request.getParameter("size");
 		String color = request.getParameter("color");
-		//int quantity = Integer.parseInt(request.getParameter("quantity"));
+		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		
 		
-		System.out.println("size: "+size +"   "+"color: " +color);
+		System.out.println("size: "+size +"   "+"color: " +color+"   "+"quantity: "+quantity);
 		HttpSession session = request.getSession();
 		List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
 
@@ -35,16 +35,19 @@ public class AddToCart extends HttpServlet {
 			cart = new ArrayList<>();
 			session.setAttribute("cart", cart);
 		}
+		
 		boolean found = false;
+		
+		
 		for (CartItem item : cart) {
-			if (item.getProduct_id() == product_id) {
-				item.setQuantity(item.getQuantity() + 1);
+			if (item.getProduct_id() == product_id && item.getSize().equals(size) &&item.getColor().equals(color)) {
+				item.setQuantity(item.getQuantity() + quantity);
 				found = true;
 				break;
 			}
 		}
 		if (!found) {
-            cart.add(new CartItem(product_id, product_name, price,image_url , 1, size));
+            cart.add(new CartItem(product_id, product_name, price,image_url , quantity, size ,color));
         }
 		
 		// 計算總數量

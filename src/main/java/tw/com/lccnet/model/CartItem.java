@@ -10,6 +10,7 @@ public class CartItem {
 	private String product_name;
 	private String image_url;
 	private int price;
+	private String color;
 	private Integer user_id;
 	private LocalDateTime created_at;
 	private int order_id;
@@ -29,13 +30,14 @@ public class CartItem {
 		this.created_at = LocalDateTime.now();
 	}
 
-	public CartItem(int product_id, String product_name, int price, String image_url ,int quantity,String size) {
+	public CartItem(int product_id, String product_name, int price, String image_url ,int quantity,String size, String color) {
 		this.product_id = product_id;
 		this.product_name = product_name;
 		this.price = price;
 		this.image_url = image_url;
 		this.quantity = quantity;
 		this.size = size;
+		this.color = color;
 		this.created_at = LocalDateTime.now();
 	}
 	
@@ -119,6 +121,14 @@ public class CartItem {
 
 	public void setSize(String size) {
 		this.size = size;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 	
 }

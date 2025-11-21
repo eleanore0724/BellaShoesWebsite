@@ -11,6 +11,8 @@
     Set<String> sizes = (Set<String>) request.getAttribute("sizes");
     Set<String> colors = (Set<String>) request.getAttribute("colors");
 %>
+
+
  
 <!DOCTYPE html>
 <html>
@@ -77,14 +79,14 @@
                 <div class="col-lg-6">
                     <h1 id="p-name" class="h3"><%= product.getProduct_name()%></h1>
                     <p id="p-price" class="lead">$<%= product.getPrice() %></p>
-
+				<form action="addToCart" method="post">
                     <!-- 顏色選擇（色票） -->
                     <div class="mb-3">
                         <label class="form-label">顏色</label>
                         <div class="d-flex gap-2" id="p-colors">
 
-							<select id="colorSelect" class="form-select w-auto">
-								<option value="">請選擇</option>
+							<select id="colorSelect" name="color" class="form-select w-auto">
+								<option>請選擇</option>
 								<% for (String c : colors) { %>
 								<option value="<%=c%>"><%=c%></option>
 								<% } %>
@@ -95,8 +97,8 @@
                     <!-- 尺寸選擇 -->
                     <div class="mb-3">
                         <label class="form-label">尺寸</label> 
-                        	<select id="sizeSelect" class="form-select w-auto">
-							<option value="">選擇尺寸</option>
+                        	<select id="sizeSelect" name="size" class="form-select w-auto">
+							<option>選擇尺寸</option>
 							<%for (String s : sizes) {%>
 							<option value="<%=s%>"><%=s%></option>
 							<%}%>
@@ -107,21 +109,19 @@
 					<div class="mb-3">
 						<label class="form-label">數量</label>
 						<div class="d-flex align-items-center gap-2 mt-1">
-							<button class="btn btn-outline-secondary btn-sm" name="action" value="decrease">-</button>
-							<input name="quantity" type="text" class="form-control w-auto text-center" min="1" value="1" style="width: 60px;">
-							<button class="btn btn-outline-secondary btn-sm" name="action" value="increase">+</button>
+							<button type="button" class="btn btn-outline-secondary btn-sm" id="btn-decrease">-</button>
+							<input id="quantityInput" name="quantityInput" type="text" class="form-control w-auto text-center" value="1" min="1" style="width: 60px;" readonly>
+							<button type="button" class="btn btn-outline-secondary btn-sm" id="btn-increase">+</button>
 						</div>
 					</div>
 					<!-- 操作按鈕 -->
                     <div class="d-flex gap-2">
-                    <form action="addToCart" method="post">
+                    
                     	<input type="hidden" name="product_id" value="${product.product_id}">
                     	<input type="hidden" name="product_name" value="${product.product_name}">
 						<input type="hidden" name="price" value="${product.price}">
 						<input type="hidden" name="image_url" value="${product.image_url}">
-						<input type="hidden" name="image_url" value="${product.size}">
-						<input type="hidden" name="image_url" value="${product.color}">
-
+						<input type="hidden" name="quantity" id="hiddenQuantity" value="1">
                         <button id="btn-add" class="btn btn-dark btn-add-cart">加入購物車</button>
                     </form>
                         <a href="cartServlet" class="btn btn-outline-dark">前往購物車</a>
@@ -159,5 +159,24 @@
     </main>
 
 	<%@include file="include/footer.jsp"%>
+
+	<script>
+    const qtyInput = document.getElementById("quantityInput");
+    const hiddenQty = document.getElementById("hiddenQuantity");
+    const btnIncrease = document.getElementById("btn-increase");
+    const btnDecrease = document.getElementById("btn-decrease");
+
+    // 增加數量 +1
+    btnIncrease.addEventListener("click", () => {
+        qtyInput.value = parseInt(qtyInput.value) + 1;
+        hiddenQty.value = qtyInput.value;
+    });
+
+    // 減少數量 -1（不能 < 1）
+    btnDecrease.addEventListener("click", () => {
+        qtyInput.value = Math.max(1, parseInt(qtyInput.value) - 1);
+        hiddenQty.value = qtyInput.value;
+    });
+</script>
 </body>
 </html>
