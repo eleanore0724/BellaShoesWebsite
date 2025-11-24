@@ -12,6 +12,7 @@ import java.util.List;
 import tw.com.lccnet.dao.OrderDao;
 import tw.com.lccnet.databaseutils.DBUtils;
 import tw.com.lccnet.model.CartItem;
+import tw.com.lccnet.model.Order;
 
 public class OrderDaoImpl implements OrderDao{
 	private Connection conn = DBUtils.getDataBase().getConnection();
@@ -62,5 +63,38 @@ public class OrderDaoImpl implements OrderDao{
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	@Override
+	public List<Order> getOrdersByUser(int user_id) {
+		List<Order> list =new ArrayList<Order>();
+		String sql ="SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC";
+		
+		try {
+			PreparedStatement ps =conn.prepareStatement(sql);
+			ps.setInt(1, user_id);
+			ResultSet rs =ps.executeQuery();
+			
+			while(rs.next()) {
+				Order o =new Order();
+				o.setOrder_id(rs.getInt("order_id"));
+				o.setUser_id(rs.getInt("user_id"));
+				o.setTotal_price(rs.getDouble("total_price"));
+				o.setCreated_at(rs.getDate("created_at"));
+				o.setOrders_status(rs.getString("orders_status"));
+				list.add(o);
+				
+			}
+			System.out.println(list);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public Order getOrderById(int orderId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

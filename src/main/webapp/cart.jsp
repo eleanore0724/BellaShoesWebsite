@@ -33,7 +33,7 @@
 						<div
 							class="d-flex justify-content-between align-items-center mb-3">
 							<h2 class="h6 m-0">購物車商品</h2>
-							<span id="item-count" class="text-secondary small">0 項商品</span>
+							<span id="item-count" class="text-secondary small"><%=cartCount %> 項商品</span>
 						</div>
 						<ul id="cart-list" class="list-group list-group-flush">							
 
@@ -135,10 +135,10 @@
 						<div class="mb-3">
 							<div class="d-flex justify-content-between mb-1">
 								<span class="small">商品小計</span> <span class="small"
-									id="totalPric">$ 0</span>
+									id="totalPric">$ <%=totalPrice %></span>
 							</div>
 							<div class="d-flex justify-content-between mb-1">
-								<span class="small">運費</span> <span class="small" id="shipping">$0</span>
+								<span class="small">運費</span> <span class="small" id="shipping">$ 100</span>
 							</div>
 							<div class="d-flex justify-content-between mb-1"
 								id="discount-row" style="display: none;">
@@ -147,7 +147,7 @@
 							</div>
 							<hr class="my-2">
 							<div class="d-flex justify-content-between">
-								<strong>總計</strong> <strong id="total">$0</strong>
+								<strong>總計</strong> <strong id="total">$ <%=totalPrice +100 %></strong>
 							</div>
 						</div>
 

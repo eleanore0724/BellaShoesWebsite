@@ -20,7 +20,7 @@ public class CartDaoImpl implements CartDao{
 	@Override
 	public boolean insertCartItem(int user_id, double totalPrice ,List<CartItem> cart) {
 		String insertOrderSQL  = "INSERT INTO orders (user_id, total_price, created_at, orders_status) VALUES (?, ?, NOW(), '已成立')";
-		String insertItemSQL = "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)";
+		String insertItemSQL = "INSERT INTO order_items (order_id, product_id, quantity, price, size, color, product_name) VALUES (?, ?, ?, ?, ?,?,?)";
 		try {
 			conn.setAutoCommit(false); // 開始交易
 			
@@ -45,6 +45,9 @@ public class CartDaoImpl implements CartDao{
                 itemPs.setInt(2, item.getProduct_id());
                 itemPs.setInt(3, item.getQuantity());
                 itemPs.setDouble(4, item.getPrice());
+                itemPs.setString(5, item.getSize());
+                itemPs.setString(6, item.getColor());
+                itemPs.setString(7, item.getProduct_name());
                 itemPs.addBatch();
             }
 			itemPs.executeBatch();

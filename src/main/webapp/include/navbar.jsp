@@ -22,6 +22,14 @@ if (cart == null) cart = new ArrayList<>();
     }
     String userName = (String) session.getAttribute("userName"); // 如果之後要加登入會員
 %>
+<%
+//計算總價
+double totalPrice = 0;
+for (CartItem item : cart) {
+	totalPrice += item.getPrice() * item.getQuantity();
+}
+request.setAttribute("totalPrice", totalPrice);
+%>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3 fixed-top">
         <div class="container">
@@ -53,7 +61,7 @@ if (cart == null) cart = new ArrayList<>();
 		    	if(auth != null){%>
 		    	<span class="nav-link text-white">您好，<%= auth.getName() %>! </span>
 				<li class="nav-item me-2"><a class="nav-link" href="logoutServlet">登出</a></li>
-				<li class="nav-item me-2"><a class="nav-link" href="member.jsp">會員中心</a></li>
+				<li class="nav-item me-2"><a class="nav-link" href="myOrders">會員中心</a></li>
 				<%}else{%>	
 				<li class="nav-item me-2"><a class="nav-link" href="login.jsp">登入</a></li>
 				<%}%>

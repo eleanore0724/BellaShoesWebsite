@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,49 +68,52 @@
 
 								<!-- 訂單列表 -->
 								<div id="orders-list">
-									<div class="border rounded-2 p-3 mb-3">
-										<div
-											class="d-flex justify-content-between align-items-start mb-3">
-											<div>
-												<div class="fw-semibold fw-bold fs-6">訂單編號：A10001</div>
-												<div class="small text-secondary">訂購日期：2025/11/12</div>
-											</div>
-											<div>
-												<span class="badge bg-warning text-dark">待處理</span>
-											</div>
-										</div>
-
-										<div class="mb-3">
-											<div
-												class="d-flex justify-content-between align-items-center py-2 border-bottom">
+									<c:forEach var="o" items="${orders}">
+										<div class="border rounded-2 p-3 mb-3">
+											<div class="d-flex justify-content-between align-items-start mb-3">
 												<div>
-													<div class="small">City Boots</div>
-													<div class="text-secondary" style="font-size: 12px;">40-黑色
-														× 1</div>
+													<div class="fw-semibold fw-bold fs-6">訂單編號：${o.order_id}</div>
+													<div class="small text-secondary">訂購日期：${o.created_at}</div>
 												</div>
+												<div>
+													<span class="badge bg-warning text-dark">${o.orders_status}</span>
+												</div>
+											</div>
+
+											<div class="mb-3">
+												<c:forEach var="item" items="${o.items}">
+													<div
+														class="d-flex justify-content-between align-items-center py-2 border-bottom">
+														<div>
+															<div class="small">${item.product_name}</div>
+															<div class="text-secondary" style="font-size: 12px;">${item.size}
+																- ${item.color} × ${item.quantity}</div>
+														</div>
+														<div class="text-end">
+															<div class="small">$ ${item.price}</div>
+														</div>
+													</div>
+												</c:forEach>
+											</div>
+
+											<div class="d-flex justify-content-between align-items-center mb-2">
+												<span class="small text-secondary">配送方式：宅配</span>
 												<div class="text-end">
-													<div class="small">$ 2,980</div>
+													<span class="small text-secondary me-2">總計：</span>
+													<strong>$ ${o.total_price}</strong>
 												</div>
 											</div>
-										</div>
 
-										<div
-											class="d-flex justify-content-between align-items-center mb-2">
-											<span class="small text-secondary">配送方式：宅配</span>
-											<div class="text-end">
-												<span class="small text-secondary me-2">總計：</span> <strong>$
-													6,260</strong>
+											<div class="d-flex gap-2 mt-3">
+												<button class="btn btn-outline-dark btn-sm">查看詳情</button>
 											</div>
 										</div>
-
-										<div class="d-flex gap-2 mt-3">
-											<button class="btn btn-outline-dark btn-sm">查看詳情</button>
-										</div>
-									</div>
+										</c:forEach>
 								</div>
 							</div>
+							
 						</div>
-
+						
 						<!-- 歷史紀錄 -->
 						<div class="tab-pane fade" id="history" role="tabpanel">
 							<div class="bg-white border rounded-2 p-4">

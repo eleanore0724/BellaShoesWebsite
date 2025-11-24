@@ -27,7 +27,7 @@ public class AddToCart extends HttpServlet {
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		
 		
-		System.out.println("size: "+size +"   "+"color: " +color+"   "+"quantity: "+quantity);
+		System.out.println("size: "+size +"   "+"color: " +color+"   "+"quantity: "+quantity+ "  product_name :"+product_name);
 		HttpSession session = request.getSession();
 		List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
 
@@ -49,13 +49,15 @@ public class AddToCart extends HttpServlet {
 		if (!found) {
             cart.add(new CartItem(product_id, product_name, price,image_url , quantity, size ,color));
         }
-		
+		System.out.println(cart);
 		// 計算總數量
 		int totalQuantity = 0;
 		for (CartItem item : cart) {
 		    totalQuantity += item.getQuantity();
 		}
+		
 		session.setAttribute("cartCount", totalQuantity);
+		//session.setAttribute("totalPrice", totalPrice);
 		response.sendRedirect("cart.jsp");
 	}
 
