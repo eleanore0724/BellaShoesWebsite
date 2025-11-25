@@ -49,7 +49,7 @@ request.setAttribute("totalPrice", totalPrice);
 						<li><a class="dropdown-item" href="productServlet?category=heels">跟鞋</a></li>
 					</ul>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="/products.html">門市查詢</a></li>
+				<li class="nav-item"><a class="nav-link" href="storeLocation.jsp">門市查詢</a></li>
 			</ul>
 
 
