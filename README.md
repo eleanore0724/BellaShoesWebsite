@@ -1,4 +1,4 @@
-<img width="1492" height="761" alt="首頁" src="https://github.com/user-attachments/assets/968b3196-094a-43f4-8bce-4ce0965abd90" /># [Bella-shoe] - 前端介面展示 (Frontend)
+# [Bella-shoe] - 前端介面展示 (Frontend)
 
 ## 專案簡介
 ![Uploading 首頁.png…]()
