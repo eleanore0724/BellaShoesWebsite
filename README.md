@@ -13,17 +13,14 @@
 ### 1. 會員認證與狀態 
 實作了完整的會員機制，包含前端表單驗證與登入狀態管理。登入成功後，系統會即時更新 Header 的使用者名稱。
 
-* **登入畫面 (Login):** 登入表單畫面。
-* **建立會員 (Sign Up):** 新用戶註冊介面。
-
+* **登入畫面** 
 <img width="700" height="488" alt="登入畫面" src="https://github.com/user-attachments/assets/aa3a7cbd-cb7b-4117-922e-3c6b1069927c" />
-*(登入介面截圖)*
-
+* 
+* **建立會員** 
 <img width="599" height="528" alt="建立畫面" src="https://github.com/user-attachments/assets/c5b9557b-77f1-4fdc-88e7-98ea594457c2" />
-*(註冊介面截圖)*
 
+* **成功登入後顯示會員名稱** 
 <img width="1490" height="314" alt="登入成功後顯示使用者名稱" src="https://github.com/user-attachments/assets/ccf4cbb7-929a-42cb-8375-9fd4405f08dc" />
-*(成功登入後顯示會員名稱)*
 ---
 
 ### 2. 商品瀏覽 (Product Browsing)
