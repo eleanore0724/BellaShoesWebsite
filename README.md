@@ -21,6 +21,7 @@
 * 
 * **成功登入後顯示會員名稱** 
 <img width="1490" height="314" alt="登入成功後顯示使用者名稱" src="https://github.com/user-attachments/assets/ccf4cbb7-929a-42cb-8375-9fd4405f08dc" />
+* 
 ---
 
 ### 2. 商品瀏覽 (Product Browsing)
