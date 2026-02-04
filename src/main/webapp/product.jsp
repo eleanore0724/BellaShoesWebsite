@@ -124,7 +124,7 @@
 						<input type="hidden" name="quantity" id="hiddenQuantity" value="1">
                         <button id="btn-add" class="btn btn-dark btn-add-cart">加入購物車</button>
                     </form>
-                        <a href="cartServlet" class="btn btn-outline-dark">前往購物車</a>
+                        <!--  <a href="cartServlet" class="btn btn-outline-dark">前往購物車</a> -->
                     </div>
 
                     <hr>
@@ -154,7 +154,7 @@
                     </div>
                 </div>
             </div>
-			<%@include file="include/related-products.jsp"%>
+			<%@include file="include/featured.jsp"%> 
         </div>
     </main>
 

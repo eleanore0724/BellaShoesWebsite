@@ -165,6 +165,30 @@ public class ProductDaoImpl implements ProductDao{
 		return p;
 	}
 
+
+	@Override
+	public List<Product> getFeaturedProducts() {
+		List<Product> list = new ArrayList<>();
+        String sql = "SELECT * FROM products WHERE is_featured = TRUE";
+        try {
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				Product p = new Product();
+	            p.setProduct_id(rs.getInt("product_id"));
+	            p.setProduct_name(rs.getString("product_name"));
+	            p.setImage_url(rs.getString("image_url"));
+	            p.setPrice(rs.getInt("price"));
+	            p.setFeatured(rs.getBoolean("is_featured"));
+	            list.add(p);
+	        }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 	
 
 }

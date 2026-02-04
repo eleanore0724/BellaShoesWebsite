@@ -15,4 +15,7 @@ public interface ProductDao extends BaseUtils<Product>{
 	
 	public List<Product> getProductsByGroup(int groupById);
 	Product getProductByGroupSizeColor(String groupById, String size, String color);
+	
+	// 取得所有標記為精選的商品
+    List<Product> getFeaturedProducts();
 }

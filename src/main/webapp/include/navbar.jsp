@@ -37,7 +37,7 @@ request.setAttribute("totalPrice", totalPrice);
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
 		<div class="collapse navbar-collapse position-absolute top-50 start-50 translate-middle" id="navbarNav">
 			<ul class="navbar-nav gap-3">
-				<li class="nav-item"><a class="nav-link" href="index.jsp">首頁</a></li>
+				<li class="nav-item"><a class="nav-link" href="featuredProductServlet">首頁</a></li>
 				<!--  <li class="nav-item"><a class="nav-link" href="latest-product.jsp">新品登場</a></li> 
 				<li class="nav-item"><a class="nav-link" href="indexServlet">全部商品</a></li>-->
 				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle active" href="#" id="navProducts" role="button" data-bs-toggle="dropdown" aria-expanded="false">商品分類</a>

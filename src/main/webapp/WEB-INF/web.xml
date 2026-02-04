@@ -6,4 +6,7 @@ https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
  metadata-complete="false"
  version="6.0">
  <display-name>BellaShoes</display-name>
+ <welcome-file-list>
+    <welcome-file>featuredProductServlet</welcome-file>
+</welcome-file-list>
  </web-app>

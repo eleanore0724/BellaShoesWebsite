@@ -12,13 +12,15 @@ import java.util.List;
 import tw.com.lccnet.dao.CartDao;
 import tw.com.lccnet.databaseutils.DBUtils;
 import tw.com.lccnet.model.CartItem;
+import tw.com.lccnet.model.Order;
 
 public class CartDaoImpl implements CartDao{
 	
 	private Connection conn = DBUtils.getDataBase().getConnection();
 
 	@Override
-	public boolean insertCartItem(int user_id, double totalPrice ,List<CartItem> cart) {
+	public int insertCartItem(int user_id, double totalPrice ,List<CartItem> cart) {
+		int orderId = 0;
 		String insertOrderSQL  = "INSERT INTO orders (user_id, total_price, created_at, orders_status) VALUES (?, ?, NOW(), '已成立')";
 		String insertItemSQL = "INSERT INTO order_items (order_id, product_id, quantity, price, size, color, product_name) VALUES (?, ?, ?, ?, ?,?,?)";
 		try {
@@ -30,12 +32,12 @@ public class CartDaoImpl implements CartDao{
 			orderPs.setDouble(2, totalPrice);
 			orderPs.executeUpdate();
 			
-			// 取得新訂單的 order_id
+			// 取得 order_id
 			ResultSet rs = orderPs.getGeneratedKeys();
-			int orderId = 0;
 			if (rs.next()) {
                 orderId = rs.getInt(1);
             }
+			System.out.println("orderId:" + orderId);
 			
 			// 寫入訂單明細
 			PreparedStatement itemPs = conn.prepareStatement(insertItemSQL);
@@ -53,7 +55,7 @@ public class CartDaoImpl implements CartDao{
 			itemPs.executeBatch();
 			
 			conn.commit(); // 提交交易
-			return true;
+			return orderId;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			try {
@@ -61,8 +63,9 @@ public class CartDaoImpl implements CartDao{
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-			return false;
-		}			
+			return -1;
+		}
+		
 	}
 
 	@Override
@@ -100,4 +103,5 @@ public class CartDaoImpl implements CartDao{
 			e.printStackTrace();
 		}
 	}
+
 }

@@ -156,7 +156,7 @@
 							<form action="saveCart" method="post" class="d-grid">
 								<button class="btn btn-dark" id="checkout-btn" type="submit">前往結帳</button>
 							</form>
-							<form action="clearCartServlet" method="post" class="d-grid">
+							<form action="clearCart" method="post" class="d-grid">
 								<button id="btn-clear" class="btn btn-outline-dark" type="submit">清空購物車</button>
 							</form>
 							<a href="productServlet" class="btn btn-outline-secondary">繼續購物</a>
@@ -168,7 +168,7 @@
 					</div>
 				</div>
 			</div>
-		<%@include file="include/related-products.jsp"%>
+		<%@include file="include/featured.jsp"%> 
 		</div>
 	</main>
 </body>

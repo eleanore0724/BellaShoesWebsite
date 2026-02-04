@@ -29,16 +29,16 @@
 				style="height: 800px; object-fit: cover;">
 				<img src="https://shoplineimg.com/6667f31eb876420075a23f61/682581098df9d900106664e8/2160x.webp?source_format=jpg" class="w-100" alt="...">
 			</div>
-			<div class="carousel-item" style="height: 800px; object-fit: cover;">
+			<div class="carousel-item">
 				<img src="https://shoplineimg.com/6667f31eb876420075a23f61/68257fc6a68ea1000e915cf2/2160x.webp?source_format=jpg" class="w-100" alt="...">
 			</div>
-			<div class="carousel-item" style="height: 800px; object-fit: cover;">
+			<div class="carousel-item">
 				<img src="https://shoplineimg.com/6667f31eb876420075a23f61/682580db07a4720010166972/2160x.webp?source_format=jpg" class="w-100" alt="...">
 			</div>
-			<div class="carousel-item" style="height: 800px; object-fit: cover;">
+			<div class="carousel-item">
 				<img src="https://shoplineimg.com/6667f31eb876420075a23f61/67f72e45786abc000b1ab387/2160x.webp?source_format=jpg" class="w-100" alt="...">
 			</div>
-			<div class="carousel-item" style="height: 800px; object-fit: cover;">
+			<div class="carousel-item">
 				<img src="https://shoplineimg.com/6667f31eb876420075a23f61/67345826f3fd6f000fc4ece7/2160x.webp?source_format=jpg" class="w-100" alt="...">
 			</div>
 		</div>
@@ -49,29 +49,8 @@
 			<span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="visually-hidden">Next</span>
 		</button>
 	</div>
-
-
-	<c:forEach items="${requestScope.lists}" var="list">
-		<div class="col col-md-3 my-2">
-			<div class="card h-100">
-				<div class="bg-image hover-overlay" data-mdb-ripple-init
-					data-mdb-ripple-color="light">
-					<img src=${list.image_url } class="img-fluid" /> <a href="#!">
-						<div class="mask"
-							style="background-color: rgba(251, 251, 251, 0.15);"></div>
-					</a>
-				</div>
-				<div class="card-body">
-					<h5 class="card-title">${list.product_name}</h5>
-					<p class="card-text">${list.description}</p>
-					<p class="card-text">${list.price}</p>
-				</div>
-			</div>
-		</div>
-	</c:forEach>
-
-
-	<%@include file="include/featured.jsp"%>
+	
+	<%@include file="include/featured.jsp"%>  
 	<%@include file="include/footer.jsp"%>
 </body>
 </html>

@@ -11,7 +11,7 @@ public class DBUtils {
 	private String JDBC_DRIVER="com.mysql.cj.jdbc.Driver"; //JDBC Driver
 	private String JDBC_URL="jdbc:mysql://127.0.0.1:3306/bella_shoes"; //JDBC 連接路徑(本機)
 	private String JDBC_USERNAME="root"; //資料庫帳號
-	private String JDBC_PASSWORD="123456"; //資料庫密碼
+	private String JDBC_PASSWORD="Aa890724"; //資料庫密碼
 	private Connection conn; //JDBC 連接類
 	
 	//建構子

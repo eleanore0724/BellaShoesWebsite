@@ -16,6 +16,7 @@ public class Product {
 	private Integer price;
 	private Integer stock;
 	private String description;
+	private boolean featured;
 	
 	public Product() {
 		super();
@@ -96,6 +97,15 @@ public class Product {
 	public void setGroupBy_id(Integer groupBy_id) {
 		this.groupBy_id = groupBy_id;
 	}
+	
+
+	public boolean isFeatured() {
+		return featured;
+	}
+
+	public void setFeatured(boolean featured) {
+		this.featured = featured;
+	}
 
 	@Override
 	public String toString() {
@@ -126,4 +136,6 @@ public class Product {
 				&& Objects.equals(product_name, other.product_name) && Objects.equals(size, other.size)
 				&& Objects.equals(stock, other.stock);
 	}
+	
+	
 }

@@ -32,7 +32,7 @@ public class SaveCart extends HttpServlet {
 		User auth = (User) request.getSession().getAttribute("auth");
 
 		if (auth == null) {
-			// 尚未登入 → 回登入頁
+			// 尚未登入
 			response.sendRedirect("login.jsp");
 			return;
 		}
@@ -52,15 +52,16 @@ public class SaveCart extends HttpServlet {
             totalPrice += item.getPrice() * item.getQuantity();
         }
 		
-		// 寫入orders資料庫
+		// orders資料庫
 		CartDao cartDao = new CartDaoImpl();
-		boolean isSuccess = cartDao.insertCartItem(user_id, totalPrice, cart);
-		
+		int orderId = cartDao.insertCartItem(user_id, totalPrice, cart);
+		// request.setAttribute("orderId", orderId);
+		System.out.println("orderId" + orderId);
 		// 清空購物車 Session
-		if (isSuccess) {
+		if (orderId > 0) {
 			session.removeAttribute("cart");
 			session.setAttribute("cartCount", 0);
-			response.sendRedirect("checkout.jsp");
+			response.sendRedirect("checkout.jsp?orderId=" + orderId);
 			//session.setAttribute("cartCount", 0);
 		} else {
 			request.setAttribute("message", "結帳失敗，請稍後再試！");

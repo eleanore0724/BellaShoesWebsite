@@ -48,7 +48,7 @@
 						<div class="col col-md-3 my-2">
 							<div class="card h-100">
 							<a href="ProductDetailServlet?id=${list.product_id}&groupBy_id=${list.groupBy_id}">
-<%-- 							<a href="ProductDetailServlet?id=${list.product_id}"}> --%>
+							<%-- <a href="ProductDetailServlet?id=${list.product_id}"}> --%>
 									<div class="bg-image hover-overlay" data-mdb-ripple-init
 										data-mdb-ripple-color="light">
 										<img src=${list.image_url } class="img-fluid"> <a href="#!">
@@ -58,18 +58,31 @@
 									<div class="card-body">
 										<h5 class="card-title fs-6">${list.product_name}</h5>
 										<p class="card-text">TWD $ ${list.price}</p>
-									</div>
-									<!-- 購物車按鈕 -->
-								<form action="addToCart" method="post" class="position-absolute bottom-0 end-0 m-2">
+									</div> 
+									<!-- 購物車按鈕 --> 
+									<form action="ProductDetailServlet?id=${list.product_id}&groupBy_id=${list.groupBy_id}" method="post" class="position-absolute bottom-0 end-0 m-2">
 									<input type="hidden" name="product_id" value="${list.product_id}">
 									<input type="hidden" name="product_name" value="${list.product_name}">
 									<input type="hidden" name="size" value="${list.size}">
 									<input type="hidden" name="price" value="${list.price}">
 									<input type="hidden" name="image_url" value="${list.image_url}">
-									<button type="submit" class="btn btn-outline-dark btn-sm rounded-3 px-2 py-1" id="btn-add">
-										<i class="bi bi-cart-plus me-1"></i> 加入購物車
-									</button>
-								</form>
+									 <!--  <button type="submit" class="btn btn-outline-dark btn-sm rounded-3 px-2 py-1" id="btn-add">
+										<i class="bi bi-cart-plus me-2"></i> 查看
+										</button> 
+									-->
+										<button type="submit" class="btn btn-light btn-sm rounded-pill px-3 py-2 shadow-sm border-0" id="btn-add" style="transition: all 0.3s ease;">
+    										<i class="bi bi-cart-plus me-2 text-primary"></i>
+   				 							<span style="font-weight: 500; letter-spacing: 0.5px;">查看商品</span>
+										</button>
+									</form> 
+									<!-- <button type="button"
+										class="btn btn-outline-dark btn-sm rounded-3 px-2 py-1 open-modal-btn"
+										data-bs-toggle="modal" data-bs-target="#cartModal"
+										data-id="${list.product_id}" data-name="${list.product_name}"
+										data-price="${list.price}" data-img="${list.image_url}" data-group="${list.groupBy_id}">
+										<i class="bi bi-cart-plus me-2"></i>加入購物車
+									</button> -->
+
 								</a>
 							</div>
 						</div>
@@ -82,7 +95,6 @@
 		<%@include file="include/pagination.jsp"%>
 	</div>
 	<%@include file="include/footer.jsp"%>
-
 	
-</body>
 </html>
+

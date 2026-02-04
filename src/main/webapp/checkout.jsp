@@ -14,10 +14,10 @@
 			<div class="row g-4">
 				<!-- 左邊：表單 -->
 				<div class="col-lg-8">
-					<form class="p-3 bg-white border rounded-2" action="checkout"
+					<form class="p-3 bg-white border rounded-2" action="checkoutServlet"
 						method="post">
 						<h1 class="h5">收件資訊</h1>
-						<form action="checkout" method="post">
+						<form action="checkoutServlet" method="post">
 						<div class="row g-3 mt-1">
 							<div class="col-md-6">
 								<label for="name" class="form-label">姓名</label> 
@@ -31,22 +31,23 @@
 								<label for="address" class="form-label">地址</label> 
 								<input type="text" name="shipping_address" class="form-control" placeholder="台北市中正區…" required>
 							</div>
-							<div class="col-md-6">
-								<label for="shipping" class="form-label">配送方式</label> 
-								<select id="shipping" name="shipping" class="form-select" required>
-									<option name="delivery_method" value="home">宅配</option>
-									<option name="delivery_method" value="store">超商取貨</option>
-								</select>
-							</div>
-							<div class="col-md-6">
-								<label for="payment" class="form-label">付款方式</label> 
+								<div class="col-md-6">
+									<label class="form-label">配送方式</label> 
+									<select name="shipping" class="form-select" required>
+										<option value="home">宅配</option>
+										<option value="store">超商取貨</option>
+									</select>
+								</div>
+								<div class="col-md-6">
+								<label class="form-label">付款方式</label> 
 								<select name="payment" class="form-select" required>
-									<option name="payment_method" value="credit">信用卡</option>
-									<option name="payment_method" value="transfer">轉帳</option>
-									<option name="payment_method" value="cash">現金</option>
+									<option value="credit">信用卡</option>
+									<option value="transfer">轉帳</option>
+									<option value="cash">現金</option>
 								</select>
 							</div>
 							<div class="col-12">
+								<input type="hidden" name="orderId" value="${param.orderId}">
 								<button type="submit" id="btn-pay" class="btn btn-dark w-100">送出訂單</button>
 							</div>
 							</form>

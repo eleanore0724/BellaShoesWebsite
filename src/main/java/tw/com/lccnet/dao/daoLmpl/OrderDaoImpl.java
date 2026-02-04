@@ -13,6 +13,7 @@ import tw.com.lccnet.dao.OrderDao;
 import tw.com.lccnet.databaseutils.DBUtils;
 import tw.com.lccnet.model.CartItem;
 import tw.com.lccnet.model.Order;
+import tw.com.lccnet.model.ShippingAddress;
 
 public class OrderDaoImpl implements OrderDao{
 	private Connection conn = DBUtils.getDataBase().getConnection();
@@ -25,7 +26,7 @@ public class OrderDaoImpl implements OrderDao{
 		String insertItemSQL = "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)";
 		
 		try {
-			conn.setAutoCommit(false);// 關閉自動提交 → 確保整筆交易成功才寫入
+			conn.setAutoCommit(false);// 關閉自動提交 
 			
 			// 計算總金額
 			double total = 0;
@@ -96,5 +97,28 @@ public class OrderDaoImpl implements OrderDao{
 	public Order getOrderById(int orderId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	// 存入寄送資訊
+	@Override
+	public void insertShippingAddress(ShippingAddress shippingAddress) {
+		String sql = "INSERT INTO shipping_addresses (receiver_name, phone, address, order_id) VALUES (?, ?, ?, ?)";
+		try {
+			PreparedStatement ps =conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			//ps.setInt(1, shippingAddress.getUserId());
+			
+			ps.setString(1, shippingAddress.getReceiverName());
+			ps.setString(2, shippingAddress.getPhone());
+			ps.setString(3, shippingAddress.getAddress());
+			ps.setInt(4, shippingAddress.getOrderId());
+			int rowAffected = ps.executeUpdate();
+			
+			if (rowAffected > 0) {
+	            System.out.println("成功存入寄送資訊");
+	        }
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import tw.com.lccnet.model.CartItem;
 import tw.com.lccnet.model.Order;
+import tw.com.lccnet.model.ShippingAddress;
 
 public interface OrderDao {
 	
@@ -14,4 +15,7 @@ public interface OrderDao {
 	
 	// 查單筆訂單
 	public Order getOrderById(int orderId);
+	
+	// 存入寄送資訊
+	void insertShippingAddress(ShippingAddress shippingAddress);
 }
